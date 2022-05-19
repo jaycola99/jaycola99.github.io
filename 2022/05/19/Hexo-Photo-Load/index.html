@@ -236,13 +236,13 @@
 <p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p2.png" alt="p2"></p>
 <p>但问题是在typora可以看到图片但是在网页却会显示正在加载中，为什么呢？</p>
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>F12看一下，可以看到显示在前面的是正在加载的图片，后面则是我们图片存放的路径也就是之前typora中相同的路径。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/../../themes/keep/source/images/Hexo-Photo-Load/p3.png" alt="p3"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p3.png" alt="p3"></p>
 <p>故问题出现，稍微了解了hexo的目录结构，就会知道这张正在加载中的图片<code>loading.svg</code>存放的位置其实并不是在我们初始化hexo的根目录中，而是在<code>./theme/&#123;theme&#39;s name&#125;/source/image</code>的目录中，而我们之前存放的位置是在根目录中的<code>./source/_posts/</code>这个目录中，也就是说<code>data-src</code>开始所处的目录其实并不在我们要求的目录中，怪怪怪！</p>
 <h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>OK，那就很简单了。那就换个地方存呗。</p>
 <p>将错就错，图片不存在根目录的source了，存在theme的source中就好了。难为typora了。。。毕竟如果typora不是拿来写hexo的博文的话，写其他md文件添加图片就不能直接复制了。不过也就写写博文，无所谓了</p>
 <p>修改的typora图像保存路径是<code>../../themes/keep/source/images/$&#123;filename&#125;/</code>。在images后面新建了对应的文件夹。</p>
 <p>然后再修改typora文件中的地址，把<code>/images</code>前面的全删了就ok了</p>
-<p><img lazyload src="/images/loading.svg" data-src="/../../themes/keep/source/images/Hexo-Photo-Load/p4.png" alt="p4"></p>
+<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p4.png" alt="p4"></p>
 <p>再去打开网页就可以加载出图片了(typora中图片就显示不出来了)</p>
 <p>（前面提到的<code>post_asset_folder</code>也可以改为false，制造空的文件夹了，不过无伤大雅）</p>
 <h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>形成的主要原因还是存图片时会把根目录设置在theme里了，难崩。。。</p>
@@ -288,7 +288,7 @@
                            href="/2022/05/19/Android-dp-and-px/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Android-dp-and-px</span>
+                                <span class="post-nav-title-item">Android dp和px转换</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
