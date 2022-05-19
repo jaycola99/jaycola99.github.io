@@ -9,7 +9,7 @@
     
     <title>
         
-            分类: 面经 |
+            Hexo图片一直显示加载中（已解决） |
         
         Jay&#39;s Blog
     </title>
@@ -84,7 +84,7 @@
                         </li>
                     
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                href="/categories"
                             >
                                 分类
@@ -139,7 +139,7 @@
                 </li>
             
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                        href="/categories">分类</a>
                 </li>
             
@@ -169,42 +169,195 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fas fa-folder"></i>&nbsp;面经
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Hexo图片一直显示加载中（已解决）</span>
         </div>
-        <div class="category-post-list">
-            
-<div class="archive-list-container">
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/photo.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">jaycola99</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-05-19 18:26:36</span>
+        <span class="mobile">2022-05-19 18:26</span>
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2022</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
                 
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2022/05/19/ByteDance-Client-Intern-Interview/"
-                        >2022.5.18字节客户端实习一面凉了</a>
-                        <span class="article-date">05-19</span>
+                    <li>
+                        <a href="/tags/Hexo/">Hexo</a>&nbsp;
                     </li>
                 
             </ul>
-        </section>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>661 字</span>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>不同人的情况不同，但我希望我的方法对你有用！</p>
+<p>当使用Hexo在博文中添加图片时，网页却一直显示正在加载的图片</p>
+<p>根据前人经验，我们会把<code>_config.yml</code> 文件中的<code>post_asset_folder</code> 设为 <code>true</code>，能看到这篇博文应该都知道作用了，就是在执行<code>hexo new &#123;filename&#125;</code>时，在该文件夹创建一个和md文件同名的文件夹用于存储图片等。</p>
+<p>如果md编辑器是typora，进入设置的图像界面（大部分人用的都是Typora），我们可以选择当复制添加图片时将该图片保存，就不用管照片手动添加到对应的文件家中了</p>
+<p>做法是 复制到指定路径 + <code>./$&#123;filename&#125;/</code>即可（会自动创建文件夹，所以前面的<code>post_asset_folder</code>可以不选</p>
+<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p1.png" alt="p1"></p>
+<p>当我们引用图片时，此时应该显示的是如下图所示</p>
+<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p2.png" alt="p2"></p>
+<p>但问题是在typora可以看到图片但是在网页却会显示正在加载中，为什么呢？</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>F12看一下，可以看到显示在前面的是正在加载的图片，后面则是我们图片存放的路径也就是之前typora中相同的路径。</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../../themes/keep/source/images/Hexo-Photo-Load/p3.png" alt="p3"></p>
+<p>故问题出现，稍微了解了hexo的目录结构，就会知道这张正在加载中的图片<code>loading.svg</code>存放的位置其实并不是在我们初始化hexo的根目录中，而是在<code>./theme/&#123;theme&#39;s name&#125;/source/image</code>的目录中，而我们之前存放的位置是在根目录中的<code>./source/_posts/</code>这个目录中，也就是说<code>data-src</code>开始所处的目录其实并不在我们要求的目录中，怪怪怪！</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>OK，那就很简单了。那就换个地方存呗。</p>
+<p>将错就错，图片不存在根目录的source了，存在theme的source中就好了。难为typora了。。。毕竟如果typora不是拿来写hexo的博文的话，写其他md文件添加图片就不能直接复制了。不过也就写写博文，无所谓了</p>
+<p>修改的typora图像保存路径是<code>../../themes/keep/source/images/$&#123;filename&#125;/</code>。在images后面新建了对应的文件夹。</p>
+<p>然后再修改typora文件中的地址，把<code>/images</code>前面的全删了就ok了</p>
+<p><img lazyload src="/images/loading.svg" data-src="/../../themes/keep/source/images/Hexo-Photo-Load/p4.png" alt="p4"></p>
+<p>再去打开网页就可以加载出图片了(typora中图片就显示不出来了)</p>
+<p>（前面提到的<code>post_asset_folder</code>也可以改为false，制造空的文件夹了，不过无伤大雅）</p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>形成的主要原因还是存图片时会把根目录设置在theme里了，难崩。。。</p>
 
         </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li>本文标题：Hexo图片一直显示加载中（已解决）</li>
+        <li>本文作者：jaycola99</li>
+        <li>创建时间：2022-05-19 18:26:36</li>
+        <li>
+            本文链接：https://jayblog.top/2022/05/19/Hexo-Photo-Load/
+        </li>
+        <li>
+            版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Hexo/">#Hexo</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2022/05/19/Android-dp-and-px/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Android-dp-and-px</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+            <div class="comment-container">
+                <div class="comments-container">
+    <div id="comment-anchor"></div>
+    <div class="comment-area-title">
+        <i class="fas fa-comments">&nbsp;评论</i>
     </div>
-    <div class="category-paginator">
-        <div class="paginator">
     
 
+        
+            
+    <div id="gitalk-container"></div>
+    <script data-pjax
+            src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+    <script data-pjax>
+
+        function loadGitalk() {
+            let __gitalk__pathname = decodeURI(location.pathname);
+            const __gitalk__pathnameLength = __gitalk__pathname.length;
+            const __gitalk__pathnameMaxLength = 50;
+            if (__gitalk__pathnameLength > __gitalk__pathnameMaxLength) {
+                __gitalk__pathname = __gitalk__pathname.substring(0, __gitalk__pathnameMaxLength - 3) + '...';
+            }
+
+            try {
+                Gitalk && new Gitalk({
+                    clientID: 'aa492e7d31dd3cceb8ef',
+                    clientSecret: '4e3920f487717a51c69fe5c07798b2d85a7a9be6',
+                    repo: 'jaycola99.github.io',
+                    owner: 'jaycola99',
+                    admin: ['jaycola99'],
+                    id: __gitalk__pathname,
+                    language: 'zh-CN'
+                }).render('gitalk-container');
+
+            } catch (e) {
+                window.Gitalk = null;
+            }
+        }
+
+        if ('true') {
+            const loadGitalkTimeout = setTimeout(() => {
+                loadGitalk();
+                clearTimeout(loadGitalkTimeout);
+            }, 1000);
+        } else {
+            window.addEventListener('DOMContentLoaded', loadGitalk);
+        }
+    </script>
+
+
+
+        
     
 </div>
 
+            </div>
+        
     </div>
 </div>
 
@@ -254,6 +407,27 @@
     </div>
 
     
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fas fa-comment"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
 
     <div class="right-bottom-side-tools">
         <div class="side-tools-container">
@@ -298,6 +472,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -355,6 +537,8 @@
 
 
 <div class="post-scripts pjax">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
     
 </div>
 
