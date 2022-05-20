@@ -9,7 +9,7 @@
     
     <title>
         
-            Hexo图片一直显示加载中（已解决） |
+            Android-Spinner |
         
         Jay&#39;s Blog
     </title>
@@ -172,7 +172,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">Hexo图片一直显示加载中（已解决）</span>
+            <span class="title-hover-animation">Android-Spinner</span>
         </div>
 
         
@@ -189,9 +189,20 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-05-19 18:26:36</span>
-        <span class="mobile">2022-05-19 18:26</span>
+        <span class="pc">2022-05-20 07:52:04</span>
+        <span class="mobile">2022-05-20 07:52</span>
     </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Android/">Android</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
     
     
         <span class="article-tags article-meta-item">
@@ -199,7 +210,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Hexo/">Hexo</a>&nbsp;
+                        <a href="/tags/Android/">Android</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/View/">View</a>&nbsp;
                     </li>
                 
             </ul>
@@ -209,7 +224,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>661 字</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>381 字</span>
         </span>
     
     
@@ -226,26 +241,16 @@
         
 
         <div class="article-content markdown-body">
-            <p>不同人的情况不同，但我希望我的方法对你有用！</p>
-<p>当使用Hexo在博文中添加图片时，网页却一直显示正在加载的图片</p>
-<p>根据前人经验，我们会把<code>_config.yml</code> 文件中的<code>post_asset_folder</code> 设为 <code>true</code>，能看到这篇博文应该都知道作用了，就是在执行<code>hexo new &#123;filename&#125;</code>时，在该文件夹创建一个和md文件同名的文件夹用于存储图片等。</p>
-<p>如果md编辑器是typora，进入设置的图像界面（大部分人用的都是Typora），我们可以选择当复制添加图片时将该图片保存，就不用管照片手动添加到对应的文件家中了</p>
-<p>做法是 复制到指定路径 + <code>./$&#123;filename&#125;/</code>即可（会自动创建文件夹，所以前面的<code>post_asset_folder</code>可以不选</p>
-<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p1.png" alt="p1"></p>
-<p>当我们引用图片时，此时应该显示的是如下图所示</p>
-<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p2.png" alt="p2"></p>
-<p>但问题是在typora可以看到图片但是在网页却会显示正在加载中，为什么呢？</p>
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>F12看一下，可以看到显示在前面的是正在加载的图片，后面则是我们图片存放的路径也就是之前typora中相同的路径。</p>
-<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p3.png" alt="p3"></p>
-<p>故问题出现，稍微了解了hexo的目录结构，就会知道这张正在加载中的图片<code>loading.svg</code>存放的位置其实并不是在我们初始化hexo的根目录中，而是在<code>./theme/&#123;theme&#39;s name&#125;/source/image</code>的目录中，而我们之前存放的位置是在根目录中的<code>./source/_posts/</code>这个目录中，也就是说<code>data-src</code>开始所处的目录其实并不在我们要求的目录中，怪怪怪！</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>OK，那就很简单了。那就换个地方存呗。</p>
-<p>将错就错，图片不存在根目录的source了，存在theme的source中就好了。难为typora了。。。毕竟如果typora不是拿来写hexo的博文的话，写其他md文件添加图片就不能直接复制了。不过也就写写博文，无所谓了</p>
-<p>修改的typora图像保存路径是<code>../../themes/keep/source/images/$&#123;filename&#125;/</code>。在images后面新建了对应的文件夹。</p>
-<p>然后再修改typora文件中的地址，把<code>/images</code>前面的全删了就ok了</p>
-<p><img lazyload src="/images/loading.svg" data-src="/images/Hexo-Photo-Load/p4.png" alt="p4"></p>
-<p>再去打开网页就可以加载出图片了(typora中图片就显示不出来了)</p>
-<p>（前面提到的<code>post_asset_folder</code>也可以改为false，制造空的文件夹了，不过无伤大雅）</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>形成的主要原因还是存图片时会把根目录设置在theme里了，难崩。。。</p>
+            <h2 id="XML布局添加spinner"><a href="#XML布局添加spinner" class="headerlink" title="XML布局添加spinner"></a>XML布局添加spinner</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Spinner</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:id</span>=<span class="string">&quot;@+id/planets_spinner&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_width</span>=<span class="string">&quot;match_parent&quot;</span></span></span><br><span class="line"><span class="tag">    <span class="attr">android:layout_height</span>=<span class="string">&quot;wrap_content&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="填充Spinner"><a href="#填充Spinner" class="headerlink" title="填充Spinner"></a>填充Spinner</h2><p>通过SpinnerAdapter提供Spinner的选项。若通过数组获取选项，提供方式应为 <code>ArrayAdapter</code>；若通过数据库查询获取选项，提供方式应为 <code>CursorAdapter</code></p>
+<h3 id="通过资源文件实现"><a href="#通过资源文件实现" class="headerlink" title="通过资源文件实现"></a>通过资源文件实现</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;utf-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">resources</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">string-array</span> <span class="attr">name</span>=<span class="string">&quot;planets_array&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Mercury<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Venus<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Earth<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Mars<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Jupiter<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Saturn<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Uranus<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">item</span>&gt;</span>Neptune<span class="tag">&lt;/<span class="name">item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">string-array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">resources</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spinner: Spinner = findViewById(R.id.spinner)</span><br><span class="line"><span class="comment">//配置Adapter</span></span><br><span class="line">ArrayAdapter.createFromResource(</span><br><span class="line">        <span class="keyword">this</span>,</span><br><span class="line">        R.array.planets_array,	<span class="comment">//资源</span></span><br><span class="line">        android.R.layout.simple_spinner_item	<span class="comment">//每个选择框的布局条件</span></span><br><span class="line">).also &#123; adapter -&gt;</span><br><span class="line">    <span class="comment">// Specify the layout to use when the list of choices appears</span></span><br><span class="line">    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)</span><br><span class="line">    <span class="comment">// Apply the adapter to the spinner</span></span><br><span class="line">    spinner.adapter = adapter</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> cardArray = arrayOf(<span class="string">&quot;圆角与阴影均为3&quot;</span>, <span class="string">&quot;圆角与阴影均为6&quot;</span>, <span class="string">&quot;圆角与阴影均为10&quot;</span>, <span class="string">&quot;圆角与阴影均为15&quot;</span>, <span class="string">&quot;圆角与阴影均为20&quot;</span>)</span><br><span class="line"><span class="keyword">val</span> cardAdapter = ArrayAdapter(<span class="keyword">this</span>, R.layout.item_select, cardArray)</span><br><span class="line">        <span class="keyword">val</span> spCard = findViewById&lt;Spinner&gt;(R.id.sp_card)</span><br><span class="line">        spCard.apply &#123;</span><br><span class="line">            prompt = <span class="string">&quot;请选择卡片类型&quot;</span></span><br><span class="line">            adapter = cardAdapter</span><br><span class="line">            onItemSelectedListener = CardSelectedListener()	<span class="comment">//响应用户选择</span></span><br><span class="line">            setSelection(<span class="number">0</span>)	<span class="comment">//默认选择好的</span></span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="监听用户选择"><a href="#监听用户选择" class="headerlink" title="监听用户选择"></a>监听用户选择</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SpinnerActivity</span> : <span class="type">Activity</span></span>(), AdapterView.OnItemSelectedListener &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onItemSelected</span><span class="params">(parent: <span class="type">AdapterView</span>&lt;*&gt;, view: <span class="type">View</span>?, pos: <span class="type">Int</span>, id: <span class="type">Long</span>)</span></span> &#123;</span><br><span class="line">        <span class="comment">//pos为选择的位置</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">onNothingSelected</span><span class="params">(parent: <span class="type">AdapterView</span>&lt;*&gt;)</span></span> &#123;</span><br><span class="line">        <span class="comment">// 没有选择</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
         </div>
 
@@ -253,11 +258,11 @@
             <div class="post-copyright-info">
                 <div class="article-copyright-info-container">
     <ul>
-        <li>本文标题：Hexo图片一直显示加载中（已解决）</li>
+        <li>本文标题：Android-Spinner</li>
         <li>本文作者：jaycola99</li>
-        <li>创建时间：2022-05-19 18:26:36</li>
+        <li>创建时间：2022-05-20 07:52:04</li>
         <li>
-            本文链接：https://jayblog.top/2022/05/19/Hexo-Photo-Load/
+            本文链接：https://jayblog.top/2022/05/20/Android-Spinner/
         </li>
         <li>
             版权声明：本博客所有文章除特别声明外，均采用 <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -272,7 +277,11 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/Hexo/">#Hexo</a>&nbsp;
+                        <a href="/tags/Android/">#Android</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/View/">#View</a>&nbsp;
                     </li>
                 
             </ul>
@@ -281,29 +290,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/20/Android-Spinner/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">Android-Spinner</span>
-                                <span class="post-nav-item">上一篇</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/05/19/Android-dp-and-px/"
+                           href="/2022/05/19/Hexo-Photo-Load/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Android dp和px转换</span>
+                                <span class="post-nav-title-item">Hexo图片一直显示加载中（已解决）</span>
                                 <span class="post-nav-item">下一篇</span>
                             </span>
                             <span class="right arrow-icon flex-center">
@@ -491,7 +485,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%9B%A0"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E8%AF%AD"><span class="nav-number">3.</span> <span class="nav-text">结语</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#XML%E5%B8%83%E5%B1%80%E6%B7%BB%E5%8A%A0spinner"><span class="nav-number">1.</span> <span class="nav-text">XML布局添加spinner</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A1%AB%E5%85%85Spinner"><span class="nav-number">2.</span> <span class="nav-text">填充Spinner</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E8%B5%84%E6%BA%90%E6%96%87%E4%BB%B6%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.</span> <span class="nav-text">通过资源文件实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.2.</span> <span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%91%E5%90%AC%E7%94%A8%E6%88%B7%E9%80%89%E6%8B%A9"><span class="nav-number">3.</span> <span class="nav-text">监听用户选择</span></a></li></ol>
     </div>
 </div>
         </aside>
